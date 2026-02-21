@@ -1,0 +1,143 @@
+/* Login.css — Sıfırdan tema uyumlu (CSS variables by customTheme) */
+
+:root {
+  /* Güvenli fallback'ler */
+  --bg: #f9fafb;
+  --surface: #ffffff;
+  --surface-alt: #fcfcfd;
+  --surface-muted: #f3f4f6;
+  --text: #111827;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --accent: #01A89E;
+  --accent-contrast: #ffffff;
+  --gradient: linear-gradient(135deg, #35d3c9, #fe893c);
+
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --shadow-lg: 0 16px 32px rgba(0,0,0,.12), 0 8px 16px rgba(0,0,0,.08);
+}
+
+/* Sayfa arka planı */
+.login-bg {
+  min-height: 100dvh;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  padding: var(--space-6);
+}
+
+/* Kart yerleşimi */
+.login-card {
+  width: min(100%, 1040px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  display: grid;
+  grid-template-columns: 44% 56%;
+  overflow: hidden;
+}
+
+/* Sol panel — logo ve yazısı arka planla birlikte sabit kalır */
+.login-left {
+  position: relative;
+  isolation: isolate;
+  min-height: 520px;
+  background: var(--gradient);
+  color: #fff;
+}
+/* Sabitlenen içerik */
+.login-left__sticky {
+  position: sticky;
+  top: 0;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  align-items: center;
+  justify-items: center;
+  padding: var(--space-8);
+}
+/* Logo dairesi */
+.avatar-circle {
+  width: 230px; height: 230px;
+  border-radius: 999px;
+  background: color-mix(in oklab, #ffffff 18%, transparent);
+  display: grid; place-items: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+  border: 1px solid color-mix(in oklab, #ffffff 28%, transparent);
+}
+.avatar-icon { width: 150px; height: 150px; display: block; }
+.brand-copy { text-align: center; margin-top: var(--space-4); }
+.brand-copy h3 { font-size: 24px; letter-spacing: .4px; margin: 0; color: #fff; }
+.brand-copy p  { font-size: 14px; opacity: .9; margin-top: 6px; }
+
+.brand-copy {
+margin-top: var(--space-4);
+text-align: center;
+color: #fff; /* sol panelin gradientinde kontrast için beyaz */
+}
+.brand-copy h3 {
+  margin: 0;
+  font-weight: 300; /* daha ince */
+  letter-spacing: .8px; /* biraz daha ferah */
+  font-size: clamp(28px, 3vw, 42px); /* daha büyük, ekran boyutuna duyarlı */
+  line-height: 1.1; /* daha sıkı görünüm */
+  text-shadow: 0 2px 10px rgba(0,0,0,.25); /* hafif parıltı korunuyor */
+  color: #01A89E;
+}
+
+.brand-copy p {
+margin: 6px 0 0;
+font-size: clamp(12px, 1.1vw, 14px);
+opacity: .95;
+letter-spacing: .2px;
+}
+/* vurgu çizgisi (opsiyonel) */
+.brand-copy::after {
+content: '';
+display: block;
+width: 56px;
+height: 3px;
+margin: 10px auto 0;
+border-radius: 999px;
+background: var(--accent, #01A89E);
+box-shadow: 0 2px 8px color-mix(in oklab, var(--accent, #01A89E) 40%, transparent);
+}
+/* kompakt varyant (isteğe bağlı kullan) */
+.brand-copy--compact h3 { font-size: clamp(18px, 2vw, 24px); }
+.brand-copy--compact p { font-size: clamp(11px, 1vw, 13px); }
+
+/* Sağ panel */
+.login-right { padding: clamp(20px, 5vw, 48px); }
+.login-header { margin-bottom: var(--space-6); text-align: right; }
+.login-title { font-size: 24px; margin: 0 0 6px; color: var(--text); }
+.login-subtitle { font-size: 14px; margin: 0; color: var(--text-muted); }
+
+/* Form */
+.login-form { display: grid; gap: var(--space-4); }
+.row-between { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.remember { display: inline-flex; align-items: center; gap: 8px; color: var(--text); }
+.link-forgot { background: none; border: 0; color: var(--accent); cursor: pointer; }
+.link-forgot:hover { text-decoration: underline; }
+.error-text { color: #EF4444; font-size: 13px; }
+.muted { color: var(--text-muted); font-size: 12px; }
+
+/* CTA */
+.signup-cta { text-align: center; color: var(--text); margin-top: var(--space-3); }
+.link { color: var(--accent); text-decoration: none; }
+.link:hover { text-decoration: underline; }
+
+/* Responsif */
+@media (max-width: 900px){
+  .login-card { grid-template-columns: 1fr; }
+  .login-left { min-height: 200px; }
+  .login-left__sticky{ grid-template-rows: 1fr; gap: var(--space-4); }
+}

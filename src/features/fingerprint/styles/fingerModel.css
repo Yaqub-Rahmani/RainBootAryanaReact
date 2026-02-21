@@ -1,0 +1,79 @@
+.fm-backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  z-index: var(--z-modal);
+}
+
+.fm-modal {
+  width: min(420px, 92vw);
+  background: var(--modal-bg);
+  color: var(--modal-color);
+  border-radius: var(--modal-radius);
+  box-shadow: var(--modal-shadow);
+  border: var(--modal-border-width) solid var(--modal-border-color);
+  overflow: hidden;
+}
+
+.fm-modal__header {
+  padding: var(--space-4) calc(var(--space-4) + 2px);
+  font-weight: 600;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  border-bottom: none; /* başlık arka planı varken sınır gerekmiyor */
+}
+
+
+.fm-modal__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-7) var(--space-5) var(--space-2);
+  min-height: 200px;
+}
+
+.fm-modal__progress {
+  text-align: center;
+  padding-bottom: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+}
+
+.fm-modal__footer {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-4) var(--space-6);
+}
+
+.fm-modal__error {
+  color: var(--danger);
+  text-align: center;
+  padding: 0 var(--space-4) var(--space-2);
+  font-size: var(--font-xs);
+}
+
+/* --- Buton varyantları --- */
+/* .btn { /* temel stiller screens CSS'de tanımlandı; burada sadece varyantlar  } */
+
+.btn-success {
+  background: var(--role-success-bg);
+  color: var(--role-success-contrast);
+  border-color: transparent;
+  box-shadow: var(--shadow-md);
+}
+.btn-success:hover { background: var(--role-success-hover); }
+.btn-success:active { background: var(--role-success-active); transform: translateY(1px); }
+
+.btn-outline-neutral {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--role-neutral-border);
+}
+.btn-outline-neutral:hover { background: var(--role-neutral-soft-bg); }
+.btn-outline-neutral:active { background: var(--role-neutral-soft-active); }

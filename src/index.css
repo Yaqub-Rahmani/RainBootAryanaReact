@@ -1,0 +1,80 @@
+/* Tailwind */
+@import "tailwindcss";
+
+/* ÖZEL FONT KALDIRILDI: @font-face yok */
+
+/* Temel tipografi ve renkler (tema değişkenlerine bağlandı) */
+:root {
+  font-family: var(--font, system-ui, Avenir, Helvetica, Arial, sans-serif);
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* color-scheme’yi otomatikten çıkarıyoruz; görünümler applyTheme ile set ediliyor */
+  color: var(--text, #213547);
+  background-color: var(--bg, #ffffff);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tam ekran kaplama */
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  max-width: none; /* Varsayılan max-width kısıtını kaldır */
+}
+
+/* Body */
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  /* arka plan ve metin rengi root’tan gelsin */
+  color: var(--text, #213547);
+  background: var(--bg, #ffffff);
+}
+
+/* Linkler */
+a {
+  font-weight: 500;
+  color: var(--accent, #646cff);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--accent-hover, #535bf2);
+}
+
+/* Başlıklar */
+h1 {
+  font-size: var(--fs-title, 3.2em);
+  line-height: 1.1;
+}
+
+/* Butonlar */
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--surface, #f9f9f9);
+  color: var(--text, #213547);
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s;
+}
+button:hover {
+  border-color: var(--accent, #646cff);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

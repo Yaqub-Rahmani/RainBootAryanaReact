@@ -1,0 +1,307 @@
+.ctv2 {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-4);
+  overflow: hidden;
+}
+
+/* Toolbar */
+.ctv2__toolbar {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-alt);
+}
+
+.ctv2__toolbarGrid {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 520px) auto;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.ctv2__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  justify-content: flex-start;
+}
+
+.ctv2__titleText {
+  color: var(--text);
+  font-weight: 700;
+  font-size: var(--font-xl);
+}
+
+.ctv2__count {
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+}
+
+.ctv2__search {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.ctv2__searchGrow {
+  width: 100%;
+}
+
+.ctv2__searchInput {
+  width: 100%;
+}
+
+.ctv2__actions {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Viewport scroll (tablo büyümesin) */
+.ctv2__viewport {
+  overflow: auto;
+  background: var(--surface);
+}
+
+/* Table */
+.ctv2__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 720px;
+}
+
+.ctv2__th,
+.ctv2__td {
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  color: var(--text);
+  font-size: var(--font-sm);
+  white-space: nowrap;
+}
+
+.ctv2__th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--surface-alt);
+  text-align: right;
+}
+
+.ctv2__th.is-sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.ctv2__thText {
+  display: inline-flex;
+  gap: var(--space-2);
+}
+
+.ctv2__sort {
+  color: var(--text-muted);
+  margin-inline-start: var(--space-2);
+}
+
+.ctv2__th--sel,
+.ctv2__td--sel {
+  width: 42px;
+  text-align: center;
+}
+
+.ctv2__th--rownum,
+.ctv2__td--rownum {
+  width: 70px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.ctv2__check {
+  width: 16px;
+  height: 16px;
+}
+
+.ctv2__empty {
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.ctv2 tbody tr:hover {
+  background: var(--surface-muted);
+}
+
+.ctv2 tbody tr.is-active {
+  outline: 0.5px solid var(--danger);
+  outline-offset: -2px;
+}
+
+
+
+/* Skeleton */
+.ctv2__skel {
+  height: 14px;
+  border-radius: var(--radius-2);
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,0.04),
+    rgba(0,0,0,0.08),
+    rgba(0,0,0,0.04)
+  );
+}
+
+/* Footer */
+.ctv2__footer {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3);
+  border-top: 1px solid var(--border);
+  background: var(--surface-alt);
+}
+
+.ctv2__meta {
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+}
+
+.ctv2__pager {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.ctv2__pageSize {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.ctv2__label {
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+}
+
+.ctv2__select {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2);
+  padding: 6px 10px;
+  outline: none;
+}
+
+.ctv2__nav {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.ctv2__pageInfo {
+  min-width: 72px;
+  text-align: center;
+  color: var(--text);
+}
+
+
+.ctv2__colsWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ✅ Columns panel: viewport üstünde, container tarafından kırpılmaz */
+.ctv2__colsPanel--fixed {
+  position: fixed;
+  z-index: 9999; /* her şeyin üstünde */
+}
+
+/* İstersen ekstra güvenlik: panel içi scroll */
+.ctv2__colsPanel--fixed {
+  overflow: auto;
+}
+
+
+.ctv2__colsPanel {
+  position: absolute;
+  top: calc(100% + 10px);
+  inset-inline-end: 0; /* rtl uyum */
+  width: 260px;
+  max-height: 320px;
+  overflow: auto;
+  background: var(--cardBg, #111);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 10px;
+  z-index: 50;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Panel header görünümü */
+.ctv2__colsTitle {
+  padding: 10px 12px;
+  margin: -10px -10px 10px -10px; /* panel padding'i telafi eder */
+  border-radius: 12px 12px 0 0;
+  background: var(--role-primary-bg); /* arka plan şeridi */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  font-weight: 700;
+  font-style: bold;
+}
+
+/* RTL hizalama */
+.ctv2__colsPanel[dir="rtl"] .ctv2__colsTitle {
+  text-align: right;
+}
+.ctv2__colsPanel[dir="ltr"] .ctv2__colsTitle {
+  text-align: left;
+}
+
+.ctv2__colsList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ctv2__colItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.ctv2__colItem:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ctv2__colItem.is-locked {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.ctv2__colsActions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+
+/* Responsive */
+@media (max-width: 980px) {
+  .ctv2__toolbarGrid {
+    grid-template-columns: 1fr;
+  }
+  .ctv2__actions {
+    justify-content: flex-start;
+  }
+  .ctv2__table {
+    min-width: 640px;
+  }
+}

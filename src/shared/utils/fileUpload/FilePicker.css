@@ -1,0 +1,131 @@
+/* Tema değişkenleri mevcutsa kullanılır; yoksa fallback devreye girer. */
+.fp-filepicker {
+  display: grid;
+  gap: var(--space-3, 12px);
+  font-family: var(--font, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial);
+  color: var(--text, #111827);
+}
+
+.fp-filepicker[data-disabled="true"] {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* --------- boş durum / drop alanı --------- */
+.fp-drop {
+  border: 1px dashed var(--border, #e5e7eb);
+  background: var(--surface-muted, #f9fafb);
+  color: var(--text, #111827);
+  border-radius: var(--radius-lg, 14px);
+  padding: var(--space-8, 32px);
+  text-align: center;
+  outline: none;
+  transition: box-shadow 180ms var(--motion-easing-standard, cubic-bezier(0.2,0,0,1));
+}
+
+.fp-drop--hover,
+.fp-drop:focus-visible {
+  box-shadow: 0 0 0 4px var(--btn-focus-ring, rgba(1,168,158,.20));
+}
+
+.fp-drop__hint {
+  margin-top: var(--space-2, 8px);
+  font-size: var(--font-sm, 14px);
+  color: var(--text-muted, #6b7280);
+}
+
+/* --------- label & file input --------- */
+.fp-filelabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  height: var(--btn-height, 40px);
+  padding: 0 var(--btn-px, 16px);
+  border-radius: var(--btn-radius, 6px);
+  background: var(--role-primary-bg, var(--accent, #01A89E));
+  color: var(--role-primary-contrast, #fff);
+  border: 1px solid var(--role-primary-border, transparent);
+  cursor: pointer;
+  user-select: none;
+  font-size: var(--btn-font-size, 14px);
+  font-weight: var(--btn-weight, 500);
+  transition: background 160ms var(--motion-easing-standard, cubic-bezier(0.2,0,0,1));
+}
+
+.fp-filelabel:hover { background: var(--role-primary-hover, #0A7D76); }
+.fp-filelabel:active { background: var(--role-primary-active, #095E59); }
+
+.fp-filelabel__icon { line-height: 1; }
+.fp-filelabel__text { line-height: 1; }
+
+/* input’u görünmez yapıp etikete tıklanabilirlik veriyoruz */
+.fp-file-input {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0);
+  border: 0;
+}
+
+/* --------- seçili dosya --------- */
+.fp-selected {
+  display: grid;
+  gap: var(--space-3, 12px);
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: var(--radius-lg, 14px);
+  padding: var(--space-4, 16px);
+  box-shadow: var(--card-shadow, 0 6px 16px rgba(0,0,0,.10));
+}
+
+.fp-selected__brief {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  font-size: var(--font-sm, 14px);
+}
+
+.fp-selected__mask { font-weight: 600; }
+
+.fp-actions {
+  display: flex;
+  gap: var(--space-3, 12px);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* --------- aksiyon butonu (sil) --------- */
+.fp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  height: var(--btn-height, 40px);
+  padding: 0 var(--btn-px, 16px);
+  border-radius: var(--btn-radius, 6px);
+  border: 1px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  font-size: var(--btn-font-size, 14px);
+  font-weight: var(--btn-weight, 500);
+  transition: background 160ms var(--motion-easing-standard, cubic-bezier(0.2,0,0,1));
+}
+
+.fp-btn--danger {
+  background: var(--role-danger-bg, #EF4444);
+  color: var(--role-danger-contrast, #fff);
+  border-color: var(--role-danger-border, transparent);
+}
+.fp-btn--danger:hover { background: var(--role-danger-hover, #DC2626); }
+.fp-btn--danger:active { background: var(--role-danger-active, #B91C1C); }
+
+.fp-btn--md { height: 40px; }
+.fp-btn__text { line-height: 1; }
+
+/* --------- hata --------- */
+.fp-error {
+  color: var(--role-danger-bg, #EF4444);
+  background: var(--role-danger-soft-bg, rgba(239,68,68,.10));
+  border: 1px solid var(--role-danger-soft-border, rgba(239,68,68,.18));
+  border-radius: var(--radius-sm, 6px);
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  font-size: var(--font-sm, 14px);
+}

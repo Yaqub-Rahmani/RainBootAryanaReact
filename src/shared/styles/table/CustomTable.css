@@ -1,0 +1,282 @@
+/* ================================
+   CustomTable — Tam CSS (RTL/Uyarlanabilir Tema)
+   ================================ */
+
+/* Tema değişkenlerine saygı (customTheme.v2 ile gelir) */
+.ct {
+  --_cell-px: var(--table-cell-px, 12px);
+  --_cell-py: var(--table-cell-py, 8px);
+  --_row-hover: var(--table-row-hover-bg, rgba(0,0,0,.03));
+  --_row-active: var(--table-row-active-bg, rgba(1,168,158,.06));
+  --_header-bg: var(--table-header-bg, var(--surface-muted));
+  --_border: var(--table-border-color, var(--border));
+  --_border-w: var(--table-border-width, 1px);
+
+  background: var(--surface);
+  color: var(--text);
+  border: var(--_border-w) solid var(--_border);
+  border-radius: var(--table-radius, var(--radius-md, 10px));
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+/* Yoğunluk seçenekleri */
+.ct--compact { --_cell-py: 6px;  --_cell-px: 10px; }
+.ct--spacious { --_cell-py: 12px; --_cell-px: 16px; }
+
+/* ================================
+   Toolbar
+   ================================ */
+.ct__toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px;
+  align-items: center;
+  padding: var(--space-4, 16px);
+  background: var(--surface-alt);
+  border-bottom: var(--_border-w) solid var(--_border);
+}
+.ct__title { display: flex; align-items: baseline; gap: 10px; }
+.ct__title strong { font: 600 var(--font-lg)/var(--leading-snug) var(--font, system-ui); }
+.ct__count { font: 400 var(--font-sm)/var(--leading-snug) var(--font, system-ui); color: var(--text-muted); }
+.ct__title--start { justify-self: start; }
+
+.ct__inline-filters { justify-self: center; display: flex; gap: 8px; align-items: center; }
+.ct__filter-inline { min-width: 220px; }
+.ct__filter-inline--date { display: flex; gap: 8px; align-items: center; }
+.ct__warn { color: var(--danger, #d32f2f); font-size: var(--font-sm); margin-top: 6px; }
+
+.ct__tools { margin-left: auto; display: flex; align-items: center; gap: 8px; position: relative; }
+.ct__tools--end { justify-self: end; display: flex; align-items: center; gap: 8px; }
+.ct__search { min-width: 220px; }
+
+/* Genel buton görünümü (temayla uyumlu) */
+.ct__btn {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: var(--btn-radius, 10px);
+  border: 1px solid var(--role-primary-border);
+  background: var(--role-primary-soft-bg);
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.ct__btn:hover { background: var(--role-primary-soft-hover); }
+.ct__btn:active { background: var(--role-primary-soft-active); }
+.ct__btn:disabled { opacity: .5; pointer-events: none; }
+
+/* ================================
+   Dropdown (Sütunlar) — sadece TIK ile açılır
+   ================================ */
+.ct__dropdown { position: relative; }
+.ct__dropdown--right { margin-inline-start: 0; }
+
+.ct__dropdown .ct__menu {
+  position: absolute;
+  inset-inline-end: 0;
+  top: calc(100% + 8px);
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-lg);
+  padding: 8px;
+  min-width: 200px;
+  display: none;           /* varsayılan kapalı */
+  z-index: 1400;
+}
+
+/* HOVER ile açmayı kaldır — ESKİ KURAL ARTIK YOK */
+/* .ct__dropdown:hover .ct__menu { display: block; } */
+
+.ct__dropdown .ct__menu.is-open { display: block; } /* buton tıklanınca aç */
+
+.ct__menu-item {
+  height: 36px; display: flex; align-items: center; gap: 8px;
+  padding: 0 12px; border-radius: 8px; cursor: pointer; border: 0; width: 100%;
+  background: transparent; color: inherit;
+}
+.ct__menu-item:hover { background: color-mix(in oklab, var(--text) 5%, transparent); }
+
+/* ================================
+   Viewport (scroll kapsayıcı)
+   ================================ */
+.ct__viewport {
+  overflow: auto;
+  max-height: 60vh;
+}
+
+/* ================================
+   Table
+   ================================ */
+.ct__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font: 400 var(--font-sm)/var(--leading-normal) var(--font, system-ui);
+}
+
+/* Başlık (sticky) */
+.ct__thead th {
+  position: sticky;
+  top: 0;
+  background: var(--_header-bg); /* OPak başlık, alttan taşmaları keser */
+  z-index: 10;                   /* temel başlık katmanı */
+  border-bottom: var(--_border-w) solid var(--_border);
+  text-align: left;
+  color: var(--text);
+}
+
+/* Hücreler */
+.ct__th, .ct__td {
+  padding: var(--_cell-py) var(--_cell-px);
+  border-bottom: var(--_border-w) solid var(--_border);
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* Zebra/hover/active */
+.ct__tbody .ct__tr:nth-child(odd) .ct__td {
+  background: color-mix(in oklab, var(--surface) 96%, var(--role-neutral-soft-bg, rgba(0,0,0,.02)));
+}
+.ct__tbody .ct__tr:hover .ct__td { background: var(--_row-hover); }
+.ct__tbody .ct__tr.is-active .ct__td { background: var(--_row-active); }
+
+/* ================================
+   Sticky İlk Sütun — DOĞRU Z-INDEX HİYERARŞİSİ
+   ================================ */
+.ct--sticky-first .ct__td--sticky {
+  position: sticky;
+  inset-inline-start: 0;          /* RTL/LTR uyumlu */
+  background: var(--surface);     /* OPak zemin */
+  z-index: 15;                    /* normal başlıktan (10) büyük */
+  box-shadow: 1px 0 0 var(--_border);
+}
+
+.ct--sticky-first .ct__th--sticky {
+  position: sticky;
+  inset-inline-start: 0;          /* RTL/LTR uyumlu */
+  background: var(--_header-bg);  /* OPak başlık zemin */
+  z-index: 20;                    /* tablonun en üst köşesi */
+  box-shadow: 1px 0 0 var(--_border);
+}
+
+/* İsteğe bağlı: ayırıcıyı biraz belirginleştirmek için */
+/*
+.ct--sticky-first .ct__td--sticky,
+.ct--sticky-first .ct__th--sticky {
+  box-shadow: 2px 0 0 color-mix(in oklab, var(--_border) 80%, transparent);
+}
+*/
+
+/* ================================
+   Seçim Sütunu ve Checkbox
+   ================================ */
+.ct__th--sel, .ct__td--sel { width: 48px; text-align: center !important; }
+
+.ct__checkbox {
+  --size: 18px;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: var(--size); height: var(--size); position: relative;
+}
+.ct__checkbox input {
+  appearance: none; width: 100%; height: 100%;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  border-radius: 4px; outline: none; cursor: pointer;
+}
+.ct__checkbox .ct__checkmark { position: absolute; inset: 0; background: transparent; border-radius: 4px; pointer-events: none; }
+
+.ct__checkbox input:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.ct__checkbox.is-indeterminate input {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.ct__checkbox.is-indeterminate .ct__checkmark::after,
+.ct__checkbox input:checked + .ct__checkmark::after {
+  content: ""; position: absolute; top: 50%; left: 50%;
+  width: 10px; height: 2px; transform: translate(-50%, -50%);
+  background: #fff; border-radius: 2px;
+}
+.ct__checkbox input:checked + .ct__checkmark::after {
+  width: 6px; height: 10px; border: 2px solid #fff; border-top: none; border-left: none;
+  transform: translate(-50%, -60%) rotate(45deg); background: transparent;
+}
+
+/* ================================
+   Sıralama
+   ================================ */
+.ct__th--sortable { cursor: pointer; user-select: none; }
+.ct__th-inner { display: flex; align-items: center; gap: 8px; }
+.ct__sort { font-size: 12px; opacity: .7; }
+.ct__sort--none { opacity: .45; }
+
+/* ================================
+   Sürükleyerek Sütun Genişletme
+   ================================ */
+.ct__resizer {
+  position: absolute; inset-inline-end: 0; top: 0; bottom: 0;
+  width: 6px; cursor: col-resize; background: transparent;
+}
+.ct__resizer:hover {
+  background: color-mix(in oklab, var(--role-primary-bg, #01A89E) 10%, transparent);
+}
+
+/* ================================
+   Boş Durum
+   ================================ */
+.ct__tr--empty .ct__td { text-align: center; }
+.ct__empty { padding: 32px 0; color: var(--text-muted); display: grid; gap: 8px; place-items: center; }
+.ct__empty-title { font: 500 var(--font-md)/var(--leading-normal) var(--font, system-ui); }
+.ct__empty-icon { font-size: 28px; }
+
+/* ================================
+   Footer / Sayfalama
+   ================================ */
+.ct__footer {
+  background: var(--surface-alt);
+  border-top: var(--_border-w) solid var(--_border);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 10px 12px;
+}
+.ct__pagination { display: flex; align-items: center; gap: 6px; }
+.ct__page-info { color: var(--text-muted); }
+
+.ct__pagesize { display: flex; align-items: center; gap: 8px; }
+.ct__ps-label { color: var(--text-muted); font-size: var(--font-sm); }
+.ct__select {
+  height: 36px;
+  background: var(--surface-muted);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0 12px; outline: none;
+}
+.ct__select:focus {
+  box-shadow: var(--select-focus-ring, 0 0 0 3px color-mix(in oklab, var(--role-primary-bg, #01A89E) 30%, transparent));
+}
+
+/* ================================
+   Satır numarası sütunu
+   ================================ */
+.ct__th--rowno, .ct__td--rowno {
+  width: 56px;
+  text-align: center !important;
+  color: var(--text-muted);
+}
+
+/* ================================
+   RTL uyumluluk (gölge/ayırıcılar için alternatif)
+   ================================ */
+[dir="rtl"] .ct--sticky-first .ct__td--sticky,
+[dir="rtl"] .ct--sticky-first .ct__th--sticky {
+  box-shadow: -1px 0 0 var(--_border); /* RTL’de çizgi sola düşer */
+}
+
+.ct__tools--no-search .ct__search { display: none; }

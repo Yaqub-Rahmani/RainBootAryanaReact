@@ -1,0 +1,36 @@
+/* AvatarUploader.css — tema değişkenleri ile, saf CSS */
+:root {
+  /* güvenli fallback'ler */
+  --au-border: var(--border, #e5e7eb);
+  --au-surface: var(--surface, #fff);
+  --au-text: var(--text, #111827);
+  --au-muted: var(--text-muted, #6b7280);
+  --au-shadow: var(--shadow-md, 0 8px 20px rgba(0,0,0,.10));
+  --au-radius-sm: var(--radius-sm, 8px);
+  --au-radius-md: var(--radius-md, 12px);
+  --au-space-xs: var(--space-xs, 6px);
+  --au-space-sm: var(--space-sm, 10px);
+}
+
+/* kök */
+.au { text-align: center; color: var(--au-text); }
+
+/* buton (görsel kapsayıcı) */
+.au__btn {
+  padding: 0; border: 1px solid var(--au-border); background: transparent; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; overflow: hidden;
+  box-shadow: var(--au-shadow);
+  width: var(--au-w); height: var(--au-h); border-radius: var(--au-radius);
+}
+.au__btn:focus-visible { outline: 0; box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent, #01A89E) 20%, transparent); }
+
+/* görsel */
+.au__img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block; }
+
+/* varyantlar */
+.au--square  { --au-radius: var(--au-radius-md); }
+.au--profile { --au-radius: 50%; }
+.au--card    { --au-radius: var(--au-radius-md); }
+
+/* başlık / açıklama */
+.au__caption { margin-top: var(--au-space-sm); color: var(--au-muted); font-size: 13px; line-height: 1.5; }

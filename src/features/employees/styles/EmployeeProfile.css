@@ -1,0 +1,331 @@
+.empProfileRoot {
+  padding: 16px;
+}
+
+.empHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.empHeaderLeft,
+.empHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* FIX: EmployeeProfile.jsx uses className="collapse-btn" */
+.collapse-btn,
+.empCollapseBtn {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--role-neutral-soft-bg);
+  border: 1px solid var(--role-neutral-soft-border);
+  cursor: pointer;
+  transition: background var(--motion-duration-normal) var(--motion-easing-standard);
+}
+.collapse-btn:hover,
+.empCollapseBtn:hover { background: var(--role-primary-soft-bg); }
+.collapse-btn:active,
+.empCollapseBtn:active { background: var(--role-primary-soft-active); }
+
+.empAvatar {
+  width: var(--avatar-size, 44px);
+  height: var(--avatar-size, 44px);
+  border-radius: 10px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.empAvatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.empAvatarPlaceholder {
+  width: 60%;
+  height: 60%;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+}
+
+.empTitleBlock .empNameRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.empName {
+  font-size: var(--font-lg);
+  font-weight: 600;
+}
+
+.empSub {
+  font-size: var(--font-sm);
+  color: var(--text-muted);
+}
+
+.empStatusPill {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
+}
+
+.empStatusPill.ok { border-color: color-mix(in oklab, var(--role-success-bg) 45%, var(--border)); }
+.empStatusPill.bad { border-color: color-mix(in oklab, var(--role-danger-bg) 45%, var(--border)); }
+
+.empRolePill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.empRolePill.ok {
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.25);
+}
+
+.empBalance .amount {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  text-align: end;
+}
+
+.empBalance .caption {
+  font-size: var(--font-sm);
+  color: var(--text-muted);
+  text-align: end;
+}
+
+.empError {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 0, 0, 0.25);
+  background: rgba(255, 0, 0, 0.08);
+  border-radius: 12px;
+}
+
+.empCollapseBody {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: max-height 420ms var(--motion-easing-emphasize), opacity 360ms var(--motion-easing-standard),
+    transform 360ms var(--motion-easing-standard);
+  will-change: max-height, opacity, transform;
+  border-radius: var(--radius-md);
+}
+
+.empCollapseBody.open {
+  max-height: 3000px;
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 14px;
+  padding-top: 14px;
+}
+
+.empInfoGrid {
+  display: grid;
+  grid-template-columns: 6fr 8fr;
+  gap: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.empInfoRow {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  align-items: start;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px dashed color-mix(in oklab, var(--border) 80%, transparent);
+}
+
+.empInfoRow:last-child { border-bottom: 0; }
+.empInfoLabel { color: var(--text-muted); font-size: var(--font-sm); }
+.empInfoValue { font-size: var(--font-base); }
+
+/* Tenant-style media grid (aligned with FamilyMemberProfile) */
+.tenantMediaGrid{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns: repeat(var(--media-cols, 5), minmax(0,1fr));
+  gap:12px;
+}
+@media (max-width: 1200px){ .tenantMediaGrid{ grid-template-columns: repeat(3, minmax(0,1fr)); } }
+@media (max-width: 768px){ .tenantMediaGrid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+
+.tenantMediaCard{
+  border:1px solid var(--border);
+  border-radius:14px;
+  background: var(--surface);
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.tenantMediaBox{
+  height:170px;
+  border-radius:12px;
+  background: var(--surface-muted);
+  border:1px dashed var(--border);
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+}
+.tenantMediaBox img{ width:100%; height:100%; object-fit:contain; }
+.tenantMediaPh{ opacity:.7; }
+
+.tenantMediaFooter{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.tenantMediaTitle{ font-size:13px; }
+.tenantMediaActions{ display:inline-flex; gap:8px; }
+
+/* Tabs */
+.empTabs{
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 6px;
+  border-radius: 8px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.07);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+@media (max-width: 720px){
+  .empTabs{
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+
+  .empTabs::-webkit-scrollbar{ height: 6px; }
+  .empTabs::-webkit-scrollbar-thumb{
+    background: rgba(255,255,255,.14);
+    border-radius: 6px;
+  }
+}
+
+.empTab{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  color: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: .1px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform .14s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease, opacity .18s ease;
+  scroll-snap-align: start;
+}
+
+.empTab:hover{
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,.18);
+  box-shadow: 0 10px 26px rgba(0,0,0,.18);
+  background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+}
+
+.empTab:active{
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(0,0,0,.14);
+}
+
+.empTab:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(1,168,158,.22), 0 10px 26px rgba(0,0,0,.18);
+  border-color: rgba(1,168,158,.55);
+}
+
+.empTab.is-active{
+  border-color: rgba(1,168,158,.62);
+  background: linear-gradient(180deg, rgba(1,168,158,.26), rgba(1,168,158,.14));
+  box-shadow: 0 10px 28px rgba(1,168,158,.10), 0 10px 26px rgba(0,0,0,.18);
+}
+
+.empCard {
+  margin-top: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.empFormGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.empFieldInline{
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
+}
+
+.empFieldInline label{
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.empFieldInline input[type="checkbox"]{
+  width: 16px;
+  height: 16px;
+  accent-color: var(--role-primary-bg);
+}
+
+.empFormActions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+  .empInfoGrid { grid-template-columns: 1fr; }
+  .empFormGrid { grid-template-columns: 1fr; }
+}

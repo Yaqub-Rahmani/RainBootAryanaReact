@@ -1,0 +1,429 @@
+:root {
+  --adddebts-overlay-bg: rgba(0, 0, 0, 0.4);
+  --adddebts-surface: #ffffff;
+  --adddebts-border: #e5e7eb;
+  --adddebts-text: #111827;
+  --adddebts-text-muted: #6b7280;
+  --adddebts-accent: #01a89e;
+  --adddebts-danger: #ef4444;
+  --adddebts-radius-lg: 16px;
+  --adddebts-radius-md: 10px;
+  --adddebts-shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.18);
+  --adddebts-gap: 16px;
+  --adddebts-padding: 16px;
+  --adddebts-header-height: auto;
+}
+
+/* Overlay */
+
+.adddebts-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--adddebts-overlay-bg);
+  display: grid;
+  place-items: center;
+  z-index: 1300;
+}
+
+/* Modal shell */
+
+.adddebts-modal {
+  width: 100vw;
+  height: 100vh;
+  max-height: 100svh;
+  background: var(--adddebts-surface);
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+@media (min-width: 768px) {
+  .adddebts-modal {
+    width: min(1100px, 96vw);
+    height: auto;
+    max-height: 92vh;
+    border-radius: var(--adddebts-radius-lg);
+    border: 1px solid var(--adddebts-border);
+    box-shadow: var(--adddebts-shadow-lg);
+    overflow: hidden;
+  }
+}
+
+/* Header */
+
+.adddebts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--adddebts-border);
+  background: #ffffff;
+}
+
+.adddebts-header-main {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.adddebts-title {
+  margin: 0;
+  font-size: 20px;
+  color: var(--adddebts-text);
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.adddebts-title-highlight {
+  font-size: 18px;
+  color: var(--adddebts-accent);
+  font-weight: 600;
+}
+
+.adddebts-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: var(--adddebts-text-muted);
+}
+
+.adddebts-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.adddebts-stepper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--adddebts-text-muted);
+}
+
+.adddebts-stepper span {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: #f3f4f6;
+}
+
+.adddebts-stepper span.is-active {
+  background: var(--adddebts-accent);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.adddebts-stepper-separator {
+  opacity: 0.6;
+}
+
+.adddebts-close-btn {
+  --btn-height: 32px;
+}
+
+/* Body */
+
+.adddebts-body {
+  padding: var(--adddebts-padding);
+  overflow: auto;
+}
+
+/* Content layout */
+
+.adddebts-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--adddebts-gap);
+}
+
+@media (min-width: 900px) {
+  .adddebts-content--two-cols {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+/* Cards */
+
+.adddebts-card {
+  background: var(--adddebts-surface);
+  border-radius: var(--adddebts-radius-md);
+  border: 1px solid var(--adddebts-border);
+  padding: 14px 16px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.adddebts-card--form {
+  flex: 3;
+}
+
+.adddebts-card--summary {
+  flex: 2;
+}
+
+/* Form grid */
+
+.adddebts-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .adddebts-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.adddebts-field {
+  width: 100%;
+}
+
+.adddebts-field--full {
+  grid-column: 1 / -1;
+}
+
+/* Summary */
+
+.adddebts-summary-main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.adddebts-summary-section {
+  margin-top: 12px;
+}
+
+.adddebts-summary-title {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: var(--adddebts-text);
+  font-weight: 600;
+}
+
+.adddebts-summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.adddebts-summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+}
+
+/* Satırlar arasında ince çizgi */
+.adddebts-summary-row + .adddebts-summary-row {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--adddebts-border);
+}
+
+.adddebts-summary-label {
+  color: var(--adddebts-text-muted);
+}
+
+.adddebts-summary-value {
+  color: var(--adddebts-text);
+  font-weight: 500;
+}
+
+.adddebts-summary-value--em {
+  color: var(--adddebts-accent);
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.adddebts-summary-empty {
+  font-size: 13px;
+  color: var(--adddebts-text-muted);
+}
+
+/* Divider */
+
+.adddebts-divider {
+  margin: 12px 0;
+  height: 1px;
+  background: var(--adddebts-border);
+}
+
+/* Step 2 – debts list */
+
+.adddebts-debts-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.adddebts-debt-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #f9fafb;
+}
+
+@media (min-width: 640px) {
+  .adddebts-debt-row {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+}
+
+.adddebts-debt-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.adddebts-debt-label {
+  font-size: 13px;
+  color: var(--adddebts-text);
+  font-weight: 500;
+}
+
+.adddebts-debt-amount {
+  font-size: 12px;
+  color: var(--adddebts-text-muted);
+}
+
+.adddebts-debt-input {
+  flex: 1;
+}
+
+/* Text helpers */
+
+.adddebts-text-muted {
+  font-size: 13px;
+  color: var(--adddebts-text-muted);
+}
+
+.adddebts-text-error {
+  font-size: 13px;
+  color: var(--adddebts-danger);
+}
+
+.adddebts-step2-error {
+  margin-top: 8px;
+}
+
+/* Footer */
+
+.adddebts-footer {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--adddebts-border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.adddebts-footer-actions {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.adddebts-btn {
+  height: 40px;
+  border-radius: 8px;
+}
+
+.adddebts-btn--full {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .adddebts-btn--full {
+    width: auto;
+  }
+
+  .adddebts-footer-actions {
+    justify-content: flex-end;
+  }
+}
+
+.adddebts-btn--primary {
+  background: var(--adddebts-accent);
+  color: #ffffff;
+}
+
+.adddebts-btn--ghost {
+  background: transparent;
+  border: 1px solid var(--adddebts-border);
+}
+
+/* Step 2 – allocations to-do list */
+
+.adddebts-summary-list--todo {
+  gap: 10px;
+}
+
+.adddebts-summary-group {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #f9fafb;
+}
+
+.adddebts-summary-row--group {
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed var(--adddebts-border);
+}
+
+.adddebts-todo {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.adddebts-todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.adddebts-todo-line {
+  white-space: nowrap;
+}
+
+.adddebts-todo-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.adddebts-todo-text {
+  color: var(--adddebts-text);
+}
+
+.adddebts-todo-amount {
+  color: var(--adddebts-text-muted);
+  font-size: 12px;
+}
+
+.adddebts-todo-remove-btn {
+  border-radius: 999px;
+}
+
+/* Tahsis detayları için scroll alanı */
+.adddebts-summary-section--allocations {
+  max-height: 260px;        /* ihtiyaca göre 200–300px arası ayarlayabilirsin */
+  overflow-y: auto;
+  padding-inline-end: 4px;  /* scrollbar için biraz boşluk */
+}
+
+/* İç liste dikey boşluk için */
+.adddebts-summary-list--todo {
+  max-height: none;
+}

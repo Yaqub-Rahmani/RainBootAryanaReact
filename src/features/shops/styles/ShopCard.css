@@ -1,0 +1,326 @@
+/* -------------------- KÜÇÜK KART -------------------- */
+
+.shop-card {
+  position: relative;
+  border-radius: var(--card-radius);
+  background: var(--card-bg);
+  color: var(--card-color, var(--text));
+  box-shadow: var(--card-shadow);
+
+  border-width: 1.5px; /* veya 2px */
+  border-style: solid;
+  /* border-color: var(--border-strong, var(--card-border-color)); */
+  
+  border-color: var(--role-neutral-soft-border);
+
+  padding: calc(var(--card-padding) * 0.7);
+  cursor: pointer;
+  
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+
+  transition:
+    transform calc(var(--motion-duration-fast, 120) * 1ms) var(--motion-easing-emphasize, ease),
+    box-shadow calc(var(--motion-duration-fast, 120) * 1ms) var(--motion-easing-emphasize, ease),
+    border-color calc(var(--motion-duration-fast, 120) * 1ms) var(--motion-easing-standard, ease);
+}
+
+.shop-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--role-primary-border);
+}
+
+
+.shop-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2, 8px);
+}
+
+/* İsim için ince arka plan (ara renk) */
+
+.shop-card__titles {
+  min-width: 0;
+}
+
+.shop-card__name-badge {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 2px 10px;
+  border-radius: 999px;
+
+  /* ANA RENK */
+  background: var(--role-primary-bg);      /* senin ana renk değişkenin */
+  border: 1px solid var(--role-primary-bg);
+
+  /* İsteğe bağlı: yazı rengi kontrast için */
+  color: var(--role-primary-foreground, #ffffff);
+}
+
+
+.shop-card__name-text {
+  font-size: var(--font-md);
+  line-height: var(--leading-snug);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shop-card__meta {
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+}
+
+.shop-card__meta-item {
+  white-space: nowrap;
+}
+
+.shop-card__meta-sep {
+  opacity: 0.6;
+}
+
+/* Açık/kapalı (durum) – ara renk tabanlı */
+
+.shop-card__badge {
+  align-self: flex-start;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: var(--font-xs);
+  font-weight: 500;
+  border-width: 1px;
+  border-style: solid;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  background: var(--role-neutral-soft-bg);
+  border-color: var(--role-neutral-soft-border);
+  color: var(--text-muted);
+}
+
+.shop-card__badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+/* Sadece metin rengini tona göre değiştiriyoruz */
+
+.shop-card__badge--success {
+  color: var(--success);
+}
+
+.shop-card__badge--warning {
+  color: var(--warning);
+}
+
+.shop-card__badge--muted {
+  color: var(--text-muted);
+}
+
+/* Gövde */
+
+.shop-card__activity {
+  margin: 4px 0 0 0;
+  font-size: var(--font-sm);
+  line-height: var(--leading-normal);
+  color: var(--text-muted);
+}
+
+.shop-card__info-row {
+  margin-top: var(--space-2, 8px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Küçük pill’ler */
+
+.shop-card__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--role-neutral-soft-border);
+  background: var(--surface-muted);
+  font-size: var(--font-xs);
+}
+
+.shop-card__pill--soft {
+  background: var(--role-primary-soft-bg);
+  border-color: var(--role-primary-soft-border);
+}
+
+.shop-card__pill-label {
+  color: var(--text-muted);
+}
+
+.shop-card__pill-value {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* -------------------- MODAL OVERLAY -------------------- */
+
+.shop-card-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--modal-backdrop);
+  backdrop-filter: blur(4px);
+  z-index: var(--z-overlay, 1200);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* -------------------- MODAL -------------------- */
+
+.shop-card-modal {
+  width: min(680px, 100% - 32px);
+  max-height: calc(100vh - 80px);
+  overflow: auto;
+
+  border-radius: var(--modal-radius);
+  padding: var(--modal-padding);
+  background: var(--modal-bg);
+  color: var(--modal-color, var(--text));
+  box-shadow: var(--modal-shadow);
+  border-width: var(--modal-border-width);
+  border-style: solid;
+  border-color: var(--modal-border-color);
+}
+
+.shop-card-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-4, 16px);
+}
+
+.shop-card-modal__badge {
+  margin-top: 4px;
+}
+
+.shop-card-modal__titles {
+  min-width: 0;
+}
+
+.shop-card-modal__eyebrow {
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.shop-card-modal__name {
+  margin: 2px 0 4px 0;
+  font-size: var(--font-xl);
+  line-height: var(--leading-snug);
+  font-weight: 600;
+}
+
+.shop-card-modal__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: var(--font-sm);
+  color: var(--text-muted);
+}
+
+.shop-card-modal__separator {
+  opacity: 0.6;
+}
+
+/* BODY */
+
+.shop-card-modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+}
+
+.shop-card-modal__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-4, 16px);
+}
+
+@media (max-width: 640px) {
+  .shop-card-modal__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.shop-card-modal__group {
+  border-radius: var(--radius-md, 10px);
+  background: var(--surface-muted);
+  padding: var(--space-3, 12px);
+  border: 1px solid var(--border);
+}
+
+.shop-card-modal__group--full {
+  grid-column: 1 / -1;
+}
+
+.shop-card-modal__group-title {
+  margin: 0 0 var(--space-2, 8px) 0;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.shop-card-modal__dl {
+  margin: 0;
+}
+
+.shop-card-modal__row {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: var(--space-2, 8px);
+  font-size: var(--font-sm);
+  padding-block: 3px;
+}
+
+.shop-card-modal__row dt {
+  color: var(--text-muted);
+}
+
+.shop-card-modal__row dd {
+  margin: 0;
+  color: var(--text);
+}
+
+.shop-card-modal__text {
+  margin: 0;
+  font-size: var(--font-sm);
+  color: var(--text-muted);
+}
+
+/* FOOTER + BUTONLAR */
+
+.shop-card-modal__footer {
+  margin-top: var(--space-4, 16px);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.shop-card-modal__actions {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+

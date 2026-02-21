@@ -1,0 +1,11 @@
+/* Global reset + variables usage defaults */
+:root {
+  color-scheme: light;
+  font-family: var(--font, system-ui);
+  background: var(--bg, #f3f4f6);
+  color: var(--text, #111827);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+}

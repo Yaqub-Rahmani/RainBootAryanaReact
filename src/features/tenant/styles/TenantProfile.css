@@ -1,0 +1,232 @@
+.tenant-profile { padding: 10px; }
+
+/* avatar grows when collapse is open */
+.tenant-profile.isOpen .tenantAvatar{ width:88px; height:88px; }
+.tenant-profile.isOpen .tenantAvatarPh{ width:64%; height:64%; }
+.tenant-profile.isOpen .tenantTitle .tenantName{ font-size:17px; }
+
+.tenantHeader{
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background: var(--surface);
+}
+
+.tenantHeaderLeft{ display:flex; align-items:center; gap:12px; }
+.tenantAvatar{
+  width:72px; height:72px; border-radius:12px;
+  background: var(--surface-muted);
+  border:1px solid var(--border);
+  overflow:hidden; display:grid; place-items:center;
+}
+.tenantAvatar img{ width:100%; height:100%; object-fit:contain; }
+.tenantAvatarPh{ width:60%; height:60%; border-radius:10px; border:1px dashed var(--border); background:var(--surface); }
+
+.tenantTitle .tenantName{ font-weight:700; font-size:16px; }
+.tenantTitle .tenantFather{ opacity:.75; font-size:13px; }
+
+.tenantHeaderRight{ display:flex; align-items:center; gap:12px; }
+.tenantBalanceBox{ text-align:left; }
+.tenantBalanceValue{ font-weight:800; font-size:16px; }
+.tenantBalanceLabel{ opacity:.7; font-size:12px; }
+
+.tenantCollapse{
+  overflow:hidden;
+  max-height:0; opacity:0; transform:translateY(-4px);
+  transition:max-height 420ms var(--motion-easing-emphasize),
+             opacity 360ms var(--motion-easing-standard),
+             transform 360ms var(--motion-easing-standard);
+}
+.tenantCollapse.open{
+  max-height:2600px; opacity:1; transform:translateY(0);
+  margin-top:12px; padding-top:12px;
+}
+
+.tenantInfoGrid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:10px;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background: var(--surface);
+}
+
+.tenantInfoRow{ display:grid; grid-template-columns:140px 1fr; gap:10px; }
+.tenantInfoLabel{ opacity:.75; font-size:13px; }
+.tenantInfoValue{ font-size:13px; }
+
+.tenantMediaGrid{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns: repeat(5, minmax(0,1fr));
+  gap:12px;
+}
+@media (max-width: 1200px){ .tenantMediaGrid{ grid-template-columns: repeat(3, minmax(0,1fr)); } }
+@media (max-width: 768px){ .tenantMediaGrid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+
+.tenantMediaCard{
+  border:1px solid var(--border);
+  border-radius:14px;
+  background: var(--surface);
+  padding:10px;
+  display:flex; flex-direction:column; gap:10px;
+}
+
+.tenantMediaBox{
+  height:170px;
+  border-radius:12px;
+  background: var(--surface-muted);
+  border:1px dashed var(--border);
+  display:grid; place-items:center;
+  overflow:hidden;
+}
+.tenantMediaBox img{ width:100%; height:100%; object-fit:contain; }
+.tenantMediaPh{ opacity:.7; }
+
+.tenantMediaFooter{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.tenantMediaTitle{ font-size:13px; }
+.tenantMediaActions{ display:inline-flex; gap:8px; }
+
+.tenantSection{
+  margin-top:14px;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+}
+
+.tenantSectionHeader{
+  display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+  margin-bottom:10px;
+}
+
+.tenantSectionTitle{ font-weight:700; }
+
+.tenantTotals{ display:flex; gap:10px; flex-wrap:wrap; }
+.tCard{
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:12px;
+  padding:8px 10px;
+  min-width:140px;
+}
+.tLabel{ opacity:.75; font-size:12px; }
+.tValue{ font-weight:800; }
+
+/* ---------- Tabs ---------- */
+.tenantTabs{
+  margin-top:14px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.tenantTab{
+  border:1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  border-radius:12px;
+  padding:10px 12px;
+  color: inherit;
+  font-weight:700;
+  cursor:pointer;
+  transition: background 160ms ease, transform 160ms ease;
+}
+.tenantTab:hover{ transform: translateY(-1px); }
+.tenantTab.active{
+  border-color: rgba(255,255,255,0.18);
+  background: var(--primary);
+}
+
+.tenantSectionActions{ display:flex; gap:8px; align-items:center; }
+
+/* ---------- Large modal (tenant profile only) ---------- */
+.tpModalOverlay{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,0.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index: 9999;
+}
+
+.tpModal{
+  width: min(1100px, 92vw);
+  max-height: 86vh;
+  overflow:hidden;
+  border-radius:16px;
+  background: var(--surface);
+  border:1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.50);
+  display:flex;
+  flex-direction:column;
+}
+
+.tpModalHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 14px;
+  border-bottom:1px solid rgba(255,255,255,0.10);
+}
+
+.tpModalTitle{ font-weight:800; }
+
+.tpModalClose{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+}
+
+.tpModalBody{ padding:14px; overflow:auto; }
+.tpModalFooter{ padding:12px 14px; border-top:1px solid rgba(255,255,255,0.10); }
+
+.tpModalGrid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:10px;
+}
+@media (max-width: 900px){ .tpModalGrid{ grid-template-columns: 1fr; } }
+
+.tpKV{ border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:10px; background: rgba(255,255,255,0.03); }
+.tpK{ opacity:.75; font-size:12px; }
+.tpV{ font-weight:800; margin-top:2px; }
+
+.tpModalSubTitle{ margin-top:14px; margin-bottom:8px; font-weight:800; }
+.tpModalActionsRow{ margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; }
+
+.tpEmpty{ opacity:.75; padding:8px 0; }
+
+.tpPeriodPayments{ display:flex; flex-direction:column; gap:10px; }
+.tpPayItem{ display:flex; align-items:center; justify-content:space-between; gap:12px; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:10px; background: rgba(255,255,255,0.03); }
+.tpPayTitle{ font-weight:800; }
+.tpPayMeta{ opacity:.75; font-size:12px; }
+
+
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.info-grid .col {
+  display: grid;
+  gap: 10px;
+}
+
+.tenantInfoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.tenantInfoGrid .col {
+  display: grid;
+  gap: 10px;
+}

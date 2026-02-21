@@ -1,0 +1,75 @@
+.statetoggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+/* Track + circle (kutunun kendisi) */
+.statetoggle__track {
+  position: relative;
+  width: 54px;
+  height: 30px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 180ms var(--motion-easing-standard, ease);
+}
+
+/* Daire */
+.statetoggle__circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background-color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0,0,0,.12));
+}
+
+/* Icon */
+.statetoggle__icon {
+  display: block;
+}
+
+/* Label ve description */
+.statetoggle__label {
+  font-size: var(--font-sm, 14px);
+  font-weight: 500;
+}
+
+.statetoggle__description {
+  font-size: var(--font-xs, 12px);
+  color: var(--text-muted, #6b7280);
+}
+
+/* Tonlara göre on/off renkleri */
+.statetoggle--tone-primary.statetoggle--on .statetoggle__track {
+  background-color: var(--role-success-soft-bg, rgba(16, 185, 129, .2));
+}
+.statetoggle--tone-primary.statetoggle--off .statetoggle__track {
+  background-color: var(--role-danger-soft-bg, rgba(239, 68, 68, .18));
+}
+
+/* İstersen diğer tonları da açarsın */
+.statetoggle--tone-success.statetoggle--on .statetoggle__track {
+  background-color: var(--role-success-soft-bg, rgba(16, 185, 129, .2));
+}
+.statetoggle--tone-success.statetoggle--off .statetoggle__track {
+  background-color: var(--role-success-soft-bg, rgba(16, 185, 129, .08));
+}
+
+/* Disabled */
+.statetoggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.statetoggle--disabled .statetoggle__track {
+  background-color: var(--surface-muted, #e5e7eb);
+}

@@ -1,0 +1,48 @@
+/* Sayfa yüzeyi */
+.fm-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient);
+  font-family: var(--font);
+}
+
+.fm-title {
+  margin: 0;
+  font-size: var(--font-xl);
+  line-height: var(--leading-snug);
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Tema uyumlu butonlar (role-* değişkenleri) */
+.btn {
+  height: var(--btn-height);
+  border-radius: var(--btn-radius);
+  padding: 0 var(--btn-px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-weight);
+  border-width: var(--btn-border-width);
+  border-style: solid;
+  transition: transform var(--motion-duration-fast) var(--motion-easing-standard),
+              box-shadow var(--motion-duration-fast) var(--motion-easing-standard),
+              background-color var(--motion-duration-fast) var(--motion-easing-standard);
+}
+.btn:focus-visible { outline: none; box-shadow: var(--btn-focus-ring); }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+
+.btn-primary {
+  background: var(--role-primary-bg);
+  color: var(--role-primary-contrast);
+  border-color: transparent;
+  box-shadow: var(--shadow-md);
+}
+.btn-primary:hover { background: var(--role-primary-hover); }
+.btn-primary:active { background: var(--role-primary-active); transform: translateY(1px); }

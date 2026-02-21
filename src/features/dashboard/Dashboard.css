@@ -1,0 +1,579 @@
+/* =========================
+   Finance Dashboard (Header/Filters/Tabs/KPI/Buckets)
+   Clean + consistent version
+   ========================= */
+
+/* Root */
+.fd-root{
+  padding: 12px;
+}
+
+/* -------------------------
+   Status badge (payments)
+------------------------- */
+.fd-status{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 800;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  white-space: nowrap;
+}
+
+.fd-status.is-pending{
+  border-color: rgba(254,137,60,.45);
+  background: rgba(254,137,60,.14);
+}
+
+.fd-status.is-ok{
+  border-color: rgba(1,168,158,.50);
+  background: rgba(1,168,158,.14);
+}
+
+/* -------------------------
+   Header (professional)
+   Top: title + rate + actions
+   Bottom: filters
+------------------------- */
+.fdTopbar{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  background: rgba(255,255,255,.90);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.fdTopbarInner{
+  padding: 14px 16px;
+
+  display: grid;
+  grid-template-columns: 1fr minmax(420px, 520px) auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.fdTopbarLeft{
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fdTopbarTitle{
+  margin: 0;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+
+.fdTopbarSub{
+  font-size: 12px;
+  opacity: .75;
+}
+
+.fdTopbarFilters{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 10px;
+  align-items: end;
+  min-width: 0;
+}
+
+.fdFilterBox{
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.06);
+  background: rgba(0,0,0,.04);
+  min-width: 0;
+}
+
+.fdFilterLbl{
+  font-size: 12px;
+  font-weight: 800;
+  opacity: .85;
+  margin-bottom: 8px;
+}
+
+.fdTopbarRight{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.fdRateBox{
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.06);
+  background: rgba(255,255,255,.65);
+  min-width: 200px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fdRateTop{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  opacity: .85;
+}
+
+.fdRateVal{
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+
+.fdTopbarActions{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* responsive */
+@media (max-width: 1100px){
+  .fdTopbarInner{
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .fdTopbarFilters{
+    grid-template-columns: 1fr;
+  }
+
+  .fdTopbarRight{
+    justify-content: space-between;
+  }
+
+  .fdRateBox{
+    min-width: unset;
+    flex: 1 1 260px;
+  }
+
+  .fdTopbarActions{
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+.fdTopbarRightRow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:nowrap;       /* tek satır */
+  white-space:nowrap;     /* kırılma yok */
+}
+
+.fdTopbarBox{
+  height:44px;            /* hepsi eşit yükseklik */
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:0 12px;
+  border:1px solid rgba(15,23,42,.12);
+  border-radius:12px;
+  background:#fff;
+}
+
+.fdTopbarFilterBox{
+  width:240px;            /* iki tarih kutusu eşit */
+  justify-content:space-between;
+}
+
+/* Dolar kutusu daha "premium" dursun */
+.fdTopbarRateBox{
+  border-color: rgba(254,137,60,.35);
+  background: rgba(254,137,60,.06);
+}
+
+/* Dolar değeri büyük + renkli */
+.fdRateValStrong{
+  font-variant-numeric: tabular-nums;
+  display:flex;
+  align-items:baseline;
+  gap:6px;
+}
+
+.fdRateNumber{
+  font-size:20px;
+  font-weight:900;
+  line-height:1;
+  color: #FE893C; /* markalı vurgu rengi */
+  letter-spacing:.2px;
+}
+
+.fdRateUnit{
+  font-size:12px;
+  font-weight:700;
+  color: rgba(15,23,42,.65);
+}
+
+.fdTopbarActionsBox{
+  padding:0 8px;
+  gap:8px;
+}
+
+.fdRateTop{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:12px;
+  font-weight:600;
+  color:#0f172a;
+}
+
+.fdRateVal{
+  font-variant-numeric: tabular-nums;
+}
+
+.fdRateValStrong{
+  font-size:16px;         /* belirgin */
+  font-weight:800;
+  letter-spacing:.2px;
+}
+
+
+@media (max-width: 720px){
+  .fd-headerFilters{
+    grid-template-columns: 1fr;
+  }
+
+  .fd-actions{
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* -------------------------
+   Error
+------------------------- */
+.fd-error{
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  background: rgba(255,0,0,.08);
+  border: 1px solid rgba(255,0,0,.2);
+  font-size: 14px;
+}
+
+/* -------------------------
+   KPIs
+------------------------- */
+.fd-kpis{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+
+@media (max-width: 1100px){
+  .fd-kpis{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.fd-kpi{
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.fd-kpiLbl{
+  font-size: 13px;
+  opacity: .75;
+}
+
+.fd-kpiVal{
+  margin-top: 6px;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+/* -------------------------
+   Sections / Cards
+------------------------- */
+.fd-section{
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.fd-sectionHead{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.fd-sectionTitle{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.fd-sectionHint{
+  font-size: 12px;
+  opacity: .7;
+}
+
+.fd-card{
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(0,0,0,.12);
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+.fd-cardTitle{
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  opacity: .9;
+}
+
+/* -------------------------
+   Charts (mini)
+------------------------- */
+.fd-chartsGrid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 1100px){
+  .fd-chartsGrid{
+    grid-template-columns: 1fr;
+  }
+}
+
+.fd-chart{
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  height: 150px;
+}
+
+.fd-chartEmpty{
+  opacity: .6;
+  padding: 16px 6px;
+}
+
+.fd-bar{
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.fd-barTop{
+  font-size: 12px;
+  opacity: .85;
+}
+
+.fd-barRail{
+  width: 100%;
+  height: 100px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.06);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.fd-barFill{
+  width: 100%;
+  border-radius: 10px;
+  background: rgba(1,168,158,.55);
+}
+
+.fd-barLbl{
+  font-size: 12px;
+  opacity: .75;
+}
+
+/* -------------------------
+   Buckets
+------------------------- */
+.fd-buckets{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 1100px){
+  .fd-buckets{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.fd-bucket{
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.fd-bucket:hover{
+  border-color: rgba(1,168,158,.35);
+}
+
+.fd-bucketIcon{
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(1,168,158,.18);
+}
+
+.fd-bucketTitle{
+  font-size: 13px;
+  opacity: .75;
+}
+
+.fd-bucketValue{
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+/* -------------------------
+   Tabs (modern chips)
+------------------------- */
+.fd-tabs{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+
+  padding: 6px;
+  border-radius: 10px;
+
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.07);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+@media (max-width: 720px){
+  .fd-tabs{
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+
+  .fd-tabs::-webkit-scrollbar{ height: 6px; }
+  .fd-tabs::-webkit-scrollbar-thumb{
+    background: rgba(255,255,255,.14);
+    border-radius: 6px;
+  }
+}
+
+.fd-tab{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 10px 14px;
+  border-radius: 10px;
+
+  border: 1px solid rgba(255,255,255,.10);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+
+  color: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: .1px;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    transform .14s ease,
+    box-shadow .18s ease,
+    border-color .18s ease,
+    background .18s ease,
+    opacity .18s ease;
+
+  scroll-snap-align: start;
+}
+
+.fd-tab:hover{
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,.18);
+  box-shadow: 0 10px 26px rgba(0,0,0,.18);
+  background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+}
+
+.fd-tab:active{
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(0,0,0,.14);
+}
+
+.fd-tab:focus-visible{
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(1,168,158,.22),
+    0 10px 26px rgba(0,0,0,.18);
+  border-color: rgba(1,168,158,.55);
+}
+
+.fd-tab.is-active{
+  border-color: rgba(1,168,158,.62);
+  background: linear-gradient(180deg, rgba(1,168,158,.26), rgba(1,168,158,.14));
+  box-shadow:
+    0 10px 28px rgba(1,168,158,.10),
+    0 10px 26px rgba(0,0,0,.18);
+}
+
+.fd-tab.is-active::after{
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: -6px;
+  height: 3px;
+  border-radius: 6px;
+  background: rgba(1,168,158,.75);
+  filter: blur(.2px);
+  opacity: .85;
+}
+
+.fd-tabBody{
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+/* -------------------------
+   CustomTableV2 readability
+------------------------- */
+.fd-root .ctv2__titleText{ font-size: 18px; font-weight: 900; }
+.fd-root .ctv2__th{ font-size: 14px; }
+.fd-root .ctv2__td{ font-size: 14px; }
+.fd-root .ctv2__meta{ font-size: 13px; }

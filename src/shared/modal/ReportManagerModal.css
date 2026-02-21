@@ -1,0 +1,72 @@
+.rmm__overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.rmm__modal{
+  width: min(720px, 94vw);
+  background: var(--surface, #fff);
+  border-radius: 14px;
+  box-shadow: 0 18px 60px rgba(0,0,0,.25);
+  overflow: hidden;
+}
+
+.rmm__header{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 14px 10px;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+.rmm__title{ font-weight: 800; }
+.rmm__hint{ font-size: 12px; opacity: .75; margin-top: 4px; }
+
+.rmm__body{ padding: 14px; display: grid; gap: 12px; }
+
+.rmm__row{
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.rmm__label{ font-size: 13px; opacity: .85; }
+
+.rmm__seg{ display: flex; gap: 10px; flex-wrap: wrap; }
+.rmm__segBtn{
+  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(0,0,0,.02);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.rmm__segBtn.is-active{
+  border-color: var(--accent);
+  background: rgba(0,0,0,.06);
+}
+.rmm__segBtn:disabled{ opacity: .5; cursor: not-allowed; }
+
+.rmm__control{ width: 100%; }
+.rmm__date{ width: 100%; }
+
+.rmm__error{ color: #b91c1c; font-size: 12px; margin-top: 6px; }
+
+.rmm__footer{
+  padding: 12px 14px;
+  border-top: 1px solid rgba(0,0,0,.06);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@media (max-width: 560px){
+  .rmm__row{ grid-template-columns: 1fr; }
+}

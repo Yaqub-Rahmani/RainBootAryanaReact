@@ -1,0 +1,254 @@
+/* =========================================================
+   ServerReportModal.css
+   JSX class names:
+   - "var=(--label)"
+   - "var=(--label-sm)"
+   - "var=(--label-md)"
+   - "var=(--label-lg)"
+   - "var=(--role-danger-bg)"
+   - "mt-3" etc.
+   ========================================================= */
+
+/* ------------------------------
+   var=(...) utility classes
+   NOTE: '=' '(' ')' and '-' must be escaped in CSS selectors
+   ------------------------------ */
+
+/* Typography mapping
+   Uses your theme variables first: --label*, then falls back to --font*.
+*/
+.var\=\(\-\-label\){
+  font-size: var(--label, var(--label-md, var(--font-md, 14px)));
+  font-weight: var(--label-weight, 900);
+  line-height: var(--label-leading, 1.35);
+}
+
+.var\=\(\-\-label\-sm\){
+  font-size: var(--label-sm, var(--label, var(--font-sm, 13px)));
+  font-weight: var(--label-sm-weight, 800);
+  line-height: var(--label-sm-leading, 1.35);
+}
+
+.var\=\(\-\-label\-md\){
+  font-size: var(--label-md, var(--label, var(--font-md, 14px)));
+  font-weight: var(--label-md-weight, 900);
+  line-height: var(--label-md-leading, 1.35);
+}
+
+.var\=\(\-\-label\-lg\){
+  font-size: var(--label-lg, var(--label-md, var(--font-lg, 16px)));
+  font-weight: var(--label-lg-weight, 900);
+  line-height: var(--label-lg-leading, 1.25);
+}
+
+/* Optional RTL scaling */
+.var\=\(\-\-label\),
+.var\=\(\-\-label\-sm\),
+.var\=\(\-\-label\-md\),
+.var\=\(\-\-label\-lg\){
+  transform: scale(var(--font-scale, 1));
+  transform-origin: right top;
+}
+
+/* Color utilities (text color) */
+.var\=\(\-\-text\){ color: var(--text, #0f172a); }
+.var\=\(\-\-text\-muted\){ color: var(--text-muted, rgba(15,23,42,.65)); }
+
+.var\=\(\-\-role\-primary\-bg\){ color: var(--role-primary-bg); }
+.var\=\(\-\-role\-secondary\-bg\){ color: var(--role-secondary-bg); }
+.var\=\(\-\-role\-tertiary\-bg\){ color: var(--role-tertiary-bg); }
+
+.var\=\(\-\-role\-success\-bg\){ color: var(--role-success-bg); }
+.var\=\(\-\-role\-danger\-bg\){ color: var(--role-danger-bg); }
+.var\=\(\-\-role\-warning\-bg\){ color: var(--role-warning-bg); }
+.var\=\(\-\-role\-info\-bg\){ color: var(--role-info-bg); }
+
+/* ------------------------------
+   spacing utilities
+   ------------------------------ */
+.mt-1{ margin-top: var(--space-1, 4px); }
+.mt-2{ margin-top: var(--space-2, 8px); }
+.mt-3{ margin-top: var(--space-3, 12px); }
+.mt-4{ margin-top: var(--space-4, 16px); }
+.mt-5{ margin-top: var(--space-5, 20px); }
+.mt-6{ margin-top: var(--space-6, 24px); }
+
+/* =========================================================
+   Modal layout
+   ========================================================= */
+.srm__overlay{
+  position: fixed;
+  inset: 0;
+  background: var(--modal-backdrop, rgba(15, 23, 42, 0.55));
+  z-index: var(--z-modal, 1300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4, 16px);
+}
+
+.srm__modal{
+  width: min(920px, 100%);
+  background: var(--surface, #fff);
+  color: var(--text, #0f172a);
+  border-radius: var(--radius-xl, 14px);
+  box-shadow: var(--shadow-xl, 0 18px 60px rgba(0,0,0,.35));
+  border: 1px solid var(--border, rgba(15,23,42,.12));
+  overflow: hidden;
+}
+
+/* Header */
+.srm__header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: var(--surface-muted, rgba(148,163,184,.12));
+  border-bottom: 1px solid var(--border, rgba(15,23,42,.10));
+}
+
+.srm__headText{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Use label variables directly so typography is consistent */
+.srm__title{
+  font-size: var(--label-md, var(--font-md, 14px));
+  font-family: var(--label-lg);
+  font-weight: 900;
+  line-height: 1.35;
+  transform: scale(var(--font-scale, 1));
+  transform-origin: right top;
+}
+
+.srm__subtitle{
+  font-size: var(--label-sm, var(--font-xs, 12px));
+  font-weight: 700;
+  color: var(--text-muted, rgba(15,23,42,.65));
+  line-height: 1.35;
+  transform: scale(var(--font-scale, 1));
+  transform-origin: right top;
+}
+
+.srm__body{
+  padding: var(--space-4, 16px);
+}
+
+/* Sections */
+.srm__section{
+  border: 1px solid var(--border, rgba(15,23,42,.10));
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-3, 12px);
+  background: var(--surface, #fff);
+  margin-bottom: var(--space-3, 12px);
+}
+
+.srm__sectionTitle{
+  font-size: var(--label, var(--label-md, var(--font-sm, 13px)));
+  font-weight: 900;
+  margin-bottom: var(--space-3, 12px);
+  line-height: 1.35;
+  transform: scale(var(--font-scale, 1));
+  transform-origin: right top;
+}
+
+/* Choice grid */
+.srm__choiceGrid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3, 12px);
+}
+
+@media (max-width: 720px){
+  .srm__choiceGrid{ grid-template-columns: 1fr; }
+}
+
+.srm__choice{
+  text-align: start;
+  padding: var(--space-3, 12px);
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--border, rgba(15,23,42,.12));
+  background: var(--surface, #fff);
+  cursor: pointer;
+  transition: 140ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.srm__choice:hover{
+  background: var(--role-primary-bg-bg);
+  border-color: var(--role-primary-bg);
+}
+
+.srm__choice.is-active{
+  background: var(--role-secondary-bg);
+  border-color: var(--role-secondary-bg);
+  box-shadow: 0 0 0 3px var(--role-secondary-border);
+}
+
+/* Date pickers */
+.srm__grid2{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3, 12px);
+}
+
+@media (max-width: 720px){
+  .srm__grid2{ grid-template-columns: 1fr; }
+}
+
+.srm__lbl{
+  font-size: var(--label-sm, var(--font-xs, 12px));
+  font-weight: 900;
+  margin-bottom: 6px;
+  color: var(--text-muted, rgba(15,23,42,.65));
+  line-height: 1.35;
+  transform: scale(var(--font-scale, 1));
+  transform-origin: right top;
+}
+
+.srm__hint{
+  margin-top: var(--space-2, 8px);
+  font-size: var(--label-sm, var(--font-xs, 12px));
+  color: var(--text-muted, rgba(15,23,42,.65));
+  line-height: 1.35;
+  transform: scale(var(--font-scale, 1));
+  transform-origin: right top;
+}
+
+/* Alerts */
+.srm__alert{
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-3, 12px);
+  font-size: var(--label-sm, var(--font-xs, 12px));
+  font-weight: 900;
+  margin-bottom: var(--space-3, 12px);
+  line-height: 1.35;
+  transform: scale(var(--font-scale, 1));
+  transform-origin: right top;
+}
+
+.srm__alert--warn{
+  background: var(--role-warning-soft-bg, rgba(245,158,11,.10));
+  border: 1px solid var(--role-warning-soft-border, rgba(245,158,11,.25));
+  color: var(--role-warning-bg, rgba(146,64,14,1));
+}
+
+.srm__alert--err{
+  background: var(--role-danger-soft-bg, rgba(239,68,68,.10));
+  border: 1px solid var(--role-danger-soft-border, rgba(239,68,68,.25));
+  color: var(--role-danger-bg, rgba(185,28,28,1));
+}
+
+/* Footer */
+.srm__footer{
+  display: flex;
+  gap: var(--space-3, 12px);
+  justify-content: flex-end;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: var(--surface-muted, rgba(148,163,184,.10));
+  border-top: 1px solid var(--border, rgba(15,23,42,.10));
+}

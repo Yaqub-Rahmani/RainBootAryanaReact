@@ -1,0 +1,335 @@
+/* PaymentModal.css */
+
+.pmd__overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  display: grid;
+  place-items: center;
+  padding: var(--space-4);
+  z-index: var(--z-modal, 1300);
+}
+
+.pmd__modal {
+  width: min(820px, 96vw);
+  max-height: min(86vh, 900px);
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-xl);
+}
+
+.pmd__header {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-alt);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.pmd__titleWrap {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.pmd__title {
+  font-size: var(--font-lg);
+  line-height: var(--leading-snug);
+  font-weight: 400;
+  letter-spacing: 1.2px;
+}
+
+.pmd__hint {
+  font-size: var(--font-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+}
+
+.pmd__body {
+  padding: var(--space-4);
+  overflow: auto;
+}
+
+.pmd__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.pmd__field {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.pmd__span2 {
+  grid-column: span 2;
+}
+
+.pmd__labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.pmd__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-sm);
+  font-weight: 700;
+}
+
+.pmd__labelIcon {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.pmd__req {
+  color: var(--danger);
+  font-weight: 900;
+  margin-inline-start: 4px;
+}
+
+.pmd__meta {
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.pmd__control {
+  min-width: 0;
+}
+
+/* Description + biometric */
+.pmd__descGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: var(--space-3);
+  align-items: stretch;
+}
+
+.pmd__bioWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.pmd__bioStack {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+}
+
+/* BIG fingerprint button */
+/* Fingerprint button - clean */
+.pmd__bioBtn {
+  width: 160px !important;
+  height: 90px !important;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+
+  transition:
+    transform var(--motion-duration-fast) var(--motion-easing-standard),
+    box-shadow var(--motion-duration-fast) var(--motion-easing-standard),
+    filter var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+/* hover sadece idle değilken */
+.pmd__bioBtn:not(.is-idle):hover {
+  transform: translateY(-1px);
+}
+.pmd__bioBtn:active {
+  transform: translateY(0);
+}
+
+/* idle icon daha pasif */
+.pmd__bioBtn.is-idle svg {
+  opacity: 0.62;
+}
+
+/* base state shadows */
+.pmd__bioBtn.is-idle {
+  background: var(--role-neutral-soft-bg) !important;
+  border-color: var(--role-neutral-soft-border);
+  box-shadow: var(--shadow-sm);
+  filter: saturate(0.9);
+}
+
+.pmd__bioBtn.is-reading {
+  background: var(--role-secondary-bg) !important;
+  border-color: color-mix(in srgb, var(--role-secondary-bg) 45%, var(--border));
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--role-secondary-bg) 18%, transparent),
+    var(--shadow-md);
+  animation: pmdFingerPulse 1.15s ease-in-out infinite;
+}
+
+.pmd__bioBtn.is-ok {
+  background: var(--role-primary-bg) !important;
+  border-color: color-mix(in srgb, var(--role-primary-bg) 45%, var(--border));
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--role-primary-bg) 18%, transparent),
+    var(--shadow-md);
+}
+
+.pmd__bioBtn.is-failed {
+  background: var(--role-danger-bg) !important;
+  border-color: color-mix(in srgb, var(--role-danger-bg) 45%, var(--border));
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--role-danger-bg) 18%, transparent),
+    var(--shadow-md);
+}
+
+/* hint colors */
+.pmd__bioHint.is-idle {
+  color: var(--text-muted);
+}
+.pmd__bioHint.is-reading {
+  color: color-mix(in srgb, var(--role-secondary-bg) 72%, var(--text));
+}
+.pmd__bioHint.is-ok {
+  color: color-mix(in srgb, var(--role-primary-bg) 72%, var(--text));
+}
+.pmd__bioHint.is-failed {
+  color: color-mix(in srgb, var(--role-danger-bg) 78%, var(--text));
+}
+
+
+/* Header: title + max badge */
+.pmd__titleRow{
+  display:flex;
+  align-items:center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.pmd__capBadge{
+  font-size: var(--font-sm);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.pmd__capBadge.is-danger{
+  border-color: color-mix(in srgb, var(--danger) 55%, var(--border));
+  background: color-mix(in srgb, var(--danger) 10%, var(--surface));
+  color: var(--danger);
+}
+
+/* Footer note: not solda, butonlar sağda kalsın */
+.pmd__footerNote{
+  font-size: var(--font-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+  margin-inline-end: auto;
+}
+
+@media (max-width: 720px) {
+  .pmd__footerNote{
+    margin-inline-end: 0;
+  }
+}
+
+/* optional: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .pmd__bioBtn.is-reading {
+    animation: none;
+  }
+}
+
+
+@keyframes pmdFingerPulse {
+  0% {
+    box-shadow:
+      0 0 0 4px color-mix(in srgb, var(--role-warning-bg) 18%, transparent),
+      0 14px 28px rgba(0, 0, 0, 0.14);
+  }
+  50% {
+    box-shadow:
+      0 0 0 8px color-mix(in srgb, var(--role-warning-bg) 26%, transparent),
+      0 18px 34px rgba(0, 0, 0, 0.16);
+  }
+  100% {
+    box-shadow:
+      0 0 0 4px color-mix(in srgb, var(--role-warning-bg) 18%, transparent),
+      0 14px 28px rgba(0, 0, 0, 0.14);
+  }
+}
+
+/* Validation */
+.pmd__error {
+  font-size: var(--font-xs);
+  color: var(--danger);
+  line-height: var(--leading-normal);
+}
+
+.pmd__errorSummary {
+  margin-top: var(--space-2);
+  border: 1px solid color-mix(in srgb, var(--danger) 40%, var(--border));
+  background: color-mix(in srgb, var(--danger) 10%, var(--surface));
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font-size: var(--font-sm);
+}
+
+.pmd__field.is-invalid input,
+.pmd__field.is-invalid textarea,
+.pmd__field.is-invalid [class*="select"],
+.pmd__field.is-invalid [class*="Select"] {
+  border-color: color-mix(in srgb, var(--danger) 55%, var(--border)) !important;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--danger) 16%, transparent) !important;
+}
+
+/* Footer */
+.pmd__footer {
+  padding: var(--space-4);
+  border-top: 1px solid var(--border);
+  background: var(--surface-alt);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+@media (max-width: 860px) {
+  .pmd__descGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .pmd__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pmd__span2 {
+    grid-column: auto;
+  }
+
+  .pmd__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

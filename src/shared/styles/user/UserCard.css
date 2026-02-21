@@ -1,0 +1,119 @@
+.user-card {
+  --uc-pad: var(--space-3, 12px);
+  --uc-radius: var(--radius-lg, 14px);
+  --uc-border: color-mix(in oklab, var(--border) 70%, transparent);
+  --uc-shadow: 0 6px 20px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.04);
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--uc-border);
+  border-radius: var(--uc-radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  width: 280px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  transition: box-shadow var(--motion-duration-normal) var(--motion-easing-standard),
+              transform var(--motion-duration-normal) var(--motion-easing-standard),
+              border-color var(--motion-duration-normal) var(--motion-easing-standard);
+}
+.user-card--elevated:hover {
+  box-shadow: var(--uc-shadow);
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--role-primary-border) 20%, var(--uc-border));
+}
+
+/* Media alanı — iç çerçeve ve nefes boşluğu */
+.user-card__media { padding: var(--uc-pad); padding-bottom: 0; }
+.user-card__frame {
+  background: var(--surface);
+  border: 1px solid color-mix(in oklab, var(--border) 60%, transparent);
+  border-radius: calc(var(--uc-radius) - 8px);
+  padding: 8px;               /* görsel çevresinde boşluk */
+  box-shadow: inset 0 1px 0 rgba(0,0,0,.04);
+}
+.user-card__frame--placeholder {
+  height: 220px;
+  background: linear-gradient(135deg, var(--surface-muted), var(--role-neutral-soft-bg));
+}
+.user-card__avatar {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+  background: var(--surface-muted);
+}
+
+/* İçerik */
+.user-card__body { padding: var(--uc-pad) var(--uc-pad) calc(var(--uc-pad) - 4px); }
+.user-card__name {
+  margin: 0 0 4px;
+  font-size: clamp(18px, 2.3vw, var(--font-xl, 24px));
+  line-height: var(--leading-snug, 1.35);
+  font-weight: 600;
+}
+.user-card__address {
+  margin: 0 0 10px;
+  color: var(--text-muted);
+  font-size: var(--font-sm, 14px);
+  display: -webkit-box;         /* çok uzun adresler için kısaltma */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Telefon — Bakiye */
+.user-card__meta {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  font-size: var(--font-sm, 14px);
+  padding: 0 2px;
+}
+.user-card__balance { font-weight: 600; }
+.user-card__balance-val { letter-spacing: .1px; }
+.user-card__balance-suffix { margin-inline-start: 4px; margin-left: 6px; opacity: .8; font-weight: 500; }
+
+/* Footer */
+.user-card__footer {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-2, 8px);
+  padding: var(--uc-pad);
+  align-items: center;
+  border-top: 1px solid color-mix(in oklab, var(--border) 30%, transparent);
+}
+.user-card__view-btn { height: 46px; font-weight: 700; letter-spacing: .2px; }
+.user-card__menu-btn {
+  width: 46px; height: 46px; border-radius: var(--radius-pill, 999px);
+  padding: 0; display: inline-grid; place-items: center;
+  background: var(--role-neutral-soft-bg);
+  border: 1px solid var(--role-neutral-soft-border);
+  transition: background var(--motion-duration-normal) var(--motion-easing-standard),
+              transform var(--motion-duration-normal) var(--motion-easing-standard);
+}
+.user-card__menu-btn:hover { background: var(--role-neutral-soft-hover); }
+.user-card__menu-btn:active { transform: scale(.98); }
+
+/* Menü — animasyonlu açılır */
+.user-card__menu {
+  position: absolute;
+  inset-inline-end: 12px;
+  bottom: calc(100% + 8px);
+  min-width: 180px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md, 10px);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  z-index: var(--z-popover, 1400);
+  opacity: 0; transform: translateY(6px) scale(.98); pointer-events: none;
+  transition: opacity var(--motion-duration-normal) var(--motion-easing-standard),
+              transform var(--motion-duration-normal) var(--motion-easing-standard);
+}
+.user-card__menu.is-open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+.user-card__menu-item {
+  width: 100%; text-align: start; height: 36px; border: 0; background: transparent; color: inherit; font: inherit;
+  border-radius: 8px; padding: 0 10px; cursor: pointer;
+}
+.user-card__menu-item:hover { background: var(--role-primary-soft-bg); }
+.user-card__menu-item:active { background: var(--role-primary-soft-active); }

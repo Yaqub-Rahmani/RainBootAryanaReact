@@ -1,0 +1,310 @@
+/* Bileşen scope değişkenleri */
+.ss {
+  --select-height: 44px;
+  --select-radius: 10px;
+  --select-bg: #f3f4f6;
+  --select-color: #111827;
+  --select-border-width: 1px;
+  --select-border-color: #e5e7eb;
+  --select-px: 12px;
+  --select-caret-color: #111827;
+  --select-focus-ring: 0 0 0 4px rgba(1, 168, 158, 0.18);
+
+  --select-menu-radius: 12px;
+  --select-menu-shadow: 0 16px 32px rgba(0, 0, 0, 0.12),
+    0 8px 16px rgba(0, 0, 0, 0.08);
+  --select-menu-bg: #fff;
+  --select-menu-border-width: 1px;
+  --select-menu-border-color: #e5e7eb;
+
+  --select-option-height: 36px;
+  --select-option-gap: 8px;
+  --select-option-px: 12px;
+  --select-option-py: 8px;
+  --select-option-hover-bg: rgba(1, 168, 158, 0.06);
+  --select-option-selected-bg: rgba(1, 168, 158, 0.12);
+  --select-option-selected-color: #111827;
+
+  --fs-field: 14px;
+  --fs-caption: 12px;
+  --text: #111827;
+  --text-muted: #6b7280;
+  --accent: #01a89e;
+  --border: #e5e7eb;
+
+  --select-icononly-bg: rgba(15, 23, 42, 0.06);
+  --select-icononly-bg-hover: rgba(15, 23, 42, 0.12);
+
+  position: relative;
+  width: 100%;
+}
+
+.ss[dir="rtl"] {
+  direction: rtl;
+}
+.ss[dir="ltr"] {
+  direction: ltr;
+}
+
+/* Icon-only root: sadece ikon kadar alan */
+.ss.ss--icon-only {
+  width: auto;
+  display: inline-flex;
+}
+
+/* kontrol */
+.ss__control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  background: var(--select-bg);
+  color: var(--select-color);
+  border: var(--select-border-width) solid var(--select-border-color);
+  border-radius: var(--select-radius);
+  min-height: var(--select-height);
+  padding-inline: var(--select-px);
+}
+.ss__control:focus-within {
+  box-shadow: var(--select-focus-ring);
+  border-color: var(--accent);
+}
+.ss--disabled .ss__control {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ss__value {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.ss__placeholder {
+  color: var(--text-muted);
+}
+
+/* icon-only – küçük yuvarlak buton */
+.ss__control--icon-only {
+  width: 32px;
+  height: 32px;
+  min-height: 32px;
+  padding: 0;
+  border-radius: 9px;
+  border: 1px solid var(--select-icononly-border, #d0d0d0);
+  background: var(--select-icononly-bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ss__control--icon-only:hover {
+  background: var(--select-icononly-bg-hover);
+}
+.ss__control--icon-only:focus-visible {
+  outline: none;
+  box-shadow: var(--select-focus-ring);
+}
+
+/* iconOnly’de text/clear/caret gizli (div tabanlı control için) */
+.ss__control--icon-only .ss__value,
+.ss__control--icon-only .ss__clear,
+.ss__control--icon-only .ss__caret {
+  display: none !important;
+}
+
+/* ikon yerleri */
+.ss__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ss__icon--left {
+  margin-inline-end: 4px;
+}
+.ss__icon--right {
+  margin-inline-start: 4px;
+}
+
+/* chip */
+.ss__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(1, 168, 158, 0.1);
+  color: var(--text);
+  border: 1px solid rgba(1, 168, 158, 0.18);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+/* clear & caret */
+.ss__clear {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ss__clear:hover {
+  color: var(--text);
+}
+.ss__caret {
+  color: var(--select-caret-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* menü – ortak */
+.ss__menu {
+  z-index: 1400;
+  background: var(--select-menu-bg);
+  border-radius: var(--select-menu-radius);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* inline (portal yok) menü pozisyonu */
+.ss__menu--inline {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: calc(100% + 8px);
+  width: 100%;
+}
+
+/* menü gölge / düz */
+.ss__menu--elevated {
+  box-shadow: var(--select-menu-shadow);
+  border-width: var(--select-menu-border-width);
+  border-style: solid;
+  border-color: var(--select-menu-border-color);
+}
+.ss__menu--flat {
+  box-shadow: none;
+  border: 1px solid transparent;
+}
+
+/* search */
+.ss__search {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1;
+  background: var(--select-menu-bg);
+  border-bottom: 1px solid var(--border);
+  padding: 8px;
+}
+.ss__search-input {
+  width: 100%;
+  outline: none;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--select-menu-bg) 94%, transparent);
+  padding: 8px 12px;
+  font-size: var(--fs-field);
+  color: var(--text);
+}
+
+/* list */
+.ss__list {
+  overflow: auto;
+  max-height: 320px;
+}
+
+/* option */
+.ss__option {
+  display: flex;
+  align-items: center;
+  gap: var(--select-option-gap);
+  cursor: pointer;
+  padding: var(--select-option-py) var(--select-option-px);
+  min-height: var(--select-option-height);
+}
+
+/* hover – sadece arka plan rengi */
+.ss__option:hover {
+  background: var(--select-option-hover-bg);
+}
+
+/* option içi içerik */
+.ss__option-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.ss__option-label {
+  flex: 1;
+}
+
+/* seçili / disabled */
+.ss__option.is-selected,
+.ss__option[aria-selected="true"] {
+  background: var(--select-option-selected-bg);
+  color: var(--select-option-selected-color);
+}
+.ss__option--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* "Show more" butonu */
+.ss__option.ss__option--more {
+  justify-content: center;
+}
+
+/* grup etiketi */
+.ss__group {
+  font-size: 11px;
+  margin-inline-start: auto;
+  color: var(--text-muted);
+}
+
+/* meta (loading / no-options) */
+.ss__meta {
+  padding: 8px 12px;
+  color: var(--text-muted);
+  font-size: var(--fs-field);
+}
+.ss__meta--loading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* helper */
+.ss__help {
+  margin-top: 6px;
+  font-size: var(--fs-caption);
+}
+.ss__help--error {
+  color: #ef4444;
+}
+
+/* boyutlar */
+.ss--xs .ss__control {
+  min-height: 32px;
+  padding-inline: 8px;
+}
+.ss--sm .ss__control {
+  min-height: 36px;
+  padding-inline: 10px;
+}
+.ss--md .ss__control {
+  min-height: 44px;
+  padding-inline: 12px;
+}
+.ss--lg .ss__control {
+  min-height: 48px;
+  padding-inline: 14px;
+}
+.ss--xl .ss__control {
+  min-height: 56px;
+  padding-inline: 16px;
+}

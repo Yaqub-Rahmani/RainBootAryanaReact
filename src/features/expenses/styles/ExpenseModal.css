@@ -1,0 +1,248 @@
+/* Overlay */
+.exm__overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  background: rgba(0,0,0,.38);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+/* Modal */
+.exm__modal{
+  width: min(980px, calc(100vw - 36px));
+  max-height: calc(100vh - 36px);
+  overflow: hidden;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 24px 80px rgba(0,0,0,.28);
+}
+
+/* Header */
+.exm__header{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 14px 14px 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface) 90%, transparent);
+}
+
+.exm__titleWrap{
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.exm__titleRow{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.exm__title{
+  font-size: 16px;
+  font-weight: 750;
+  letter-spacing: .2px;
+}
+
+.exm__hint{
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Cap badge */
+.exm__capBadge{
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+  background: color-mix(in oklab, var(--surface-muted) 80%, transparent);
+  color: inherit;
+}
+
+.exm__capBadge.is-danger{
+  border-color: color-mix(in oklab, var(--role-danger-bg) 55%, var(--border));
+  background: color-mix(in oklab, var(--role-danger-bg) 14%, transparent);
+}
+
+/* Body */
+.exm__body{
+  padding: 14px;
+  overflow: auto;
+  max-height: calc(100vh - 36px - 64px - 72px);
+}
+
+/* Grid: 2 columns */
+.exm__grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+/* Full-row */
+.exm__span2{
+  grid-column: 1 / -1;
+}
+
+/* Field: kart/büyük kenarlık yok */
+.exm__field{
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Label row */
+.exm__labelRow{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.exm__label{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.exm__labelIcon{
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
+  color: inherit;
+}
+
+.exm__req{
+  color: var(--role-danger-bg);
+  font-weight: 800;
+  margin-inline-start: 2px;
+}
+
+.exm__meta{
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Control wrapper */
+.exm__control{
+  min-width: 0;
+}
+
+/* invalid: sadece input/select bölgesine vurgu (kart yok) */
+.exm__field.is-invalid .exm__control{
+  border-radius: 12px;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--role-danger-bg) 14%, transparent);
+}
+
+/* Warnings & errors */
+.exm__warn{
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px dashed color-mix(in oklab, var(--border) 75%, transparent);
+  background: var(--surface-muted);
+  color: var(--text-muted);
+}
+
+.exm__error{
+  font-size: 12px;
+  color: color-mix(in oklab, var(--role-danger-bg) 80%, black);
+  line-height: 1.5;
+}
+
+.exm__errorSummary{
+  margin-top: 2px;
+  font-size: 12px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in oklab, var(--role-danger-bg) 40%, var(--border));
+  background: color-mix(in oklab, var(--role-danger-bg) 10%, transparent);
+}
+
+.exm__apiError{
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in oklab, var(--role-danger-bg) 45%, var(--border));
+  background: color-mix(in oklab, var(--role-danger-bg) 10%, transparent);
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Footer */
+.exm__footer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 12px 14px;
+  border-top: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface) 92%, transparent);
+}
+
+.exm__footerNote{
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.exm__footerActions{
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Responsive */
+@media (max-width: 860px){
+  .exm__modal{
+    width: min(760px, calc(100vw - 36px));
+  }
+}
+
+@media (max-width: 720px){
+  .exm__grid{
+    grid-template-columns: 1fr;
+  }
+
+  .exm__span2{
+    grid-column: auto;
+  }
+
+  .exm__footer{
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .exm__footerActions{
+    justify-content: flex-end;
+  }
+}

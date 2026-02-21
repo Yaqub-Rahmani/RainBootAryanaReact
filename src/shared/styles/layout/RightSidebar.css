@@ -1,0 +1,82 @@
+/* RightSidebar.css — customTheme.v2 ile tam uyumlu, profesyonel tipografi ve spacing
+   Not: Tüm renk/ölçüler tema değişkenlerinden okunur. Inline stil yok. */
+
+:root {
+  --topbar-h: 56px;              /* header yüksekliği */
+  --rs-width-expanded: 260px;    /* geniş hal */
+  --rs-width-collapsed: 72px;    /* dar hal */
+}
+
+/* KÖK */
+.rs {
+  position: fixed; inset-inline-end: 0; inset-block-start: var(--topbar-h);
+  width: var(--sidebar-w, var(--rs-width-expanded));
+  height: calc(100vh - var(--topbar-h));
+  background: var(--surface);
+  color: var(--text);
+  border-inline-start: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  display: grid; grid-template-rows: auto 1fr auto;
+  z-index: var(--z-overlay, 1200);
+  transition: width .25s var(--motion-easing-standard, ease);
+  direction: rtl; /* sağda kalma + RTL */
+  font-family: var(--font);
+}
+
+.rs--collapsed { width: var(--rs-width-collapsed); }
+
+/* HEADER */
+.rs__header {
+  display: flex; align-items: center; gap: var(--space-sm, 10px);
+  justify-content: space-between; padding: 8px 10px; min-height: 52px;
+  border-bottom: 1px solid var(--border);
+}
+.rs__user { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.rs__user-badge { inline-size: 15px; block-size: 15px; border-radius: 999px; background: var(--secondary); box-shadow: 0 0 0 2px var(--surface); }
+.rs__user-name { font-size: var(--font-xl); font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* TOGGLE */
+.rs__toggle { inline-size: 44px; block-size: 36px; border-radius: var(--radius-pill);
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--surface-muted); color: var(--text);
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  transition: transform .15s var(--motion-easing-standard), background .2s ease, color .2s ease;
+}
+.rs__toggle:active { transform: scale(.96); }
+.rs--collapsed .rs__toggle { inline-size: 40px; block-size: 40px; background: var(--accent); color: var(--accent-contrast); }
+
+/* NAV */
+.rs__nav { padding: 8px; overflow: auto; }
+.rs__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+
+.rs__item { all: unset; display: flex; align-items: center; gap: 10px; cursor: pointer;
+  padding: 10px 12px; min-height: 48px; border-radius: var(--radius-md);
+  background: transparent; color: var(--text);
+  font-size: var(--font-lg); font-weight: 600;
+  transition: background .15s ease, color .15s ease;
+}
+.rs__item:hover { background: var(--surface-muted); }
+.rs__item.is-active { background: var(--accent); color: var(--accent-contrast); }
+
+.rs__icon { inline-size: 24px; display: inline-flex; justify-content: center; }
+.rs__label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rs--collapsed .rs__label { display: none; }
+
+/* FOOTER (Logout) */
+.rs__footer { border-top: 1px solid var(--border); padding: 8px; }
+.rs__logout { display: flex; align-items: center; gap: 10px; width: 100%; cursor: pointer;
+  padding: 10px 12px; min-height: 44px; border-radius: var(--radius-md);
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  font-size: var(--font-lg); font-weight: 600;
+}
+.rs__logout:hover { background: var(--surface-muted); }
+
+/* Karanlık modda yalnızca seçili yeşil kalsın — spesifik selektörler */
+[data-theme="dark"] .rs .rs__item { background: transparent; color: var(--text); box-shadow: none; }
+[data-theme="dark"] .rs .rs__item:hover { background: var(--surface-muted); }
+[data-theme="dark"] .rs .rs__item.is-active { background: var(--accent); color: var(--accent-contrast); }
+
+/* Scrollbar nazikçe */
+.rs__nav::-webkit-scrollbar { width: 10px; }
+.rs__nav::-webkit-scrollbar-thumb { background: color-mix(in oklab, var(--text) 12%, transparent); border-radius: 99px; }
+.rs__nav::-webkit-scrollbar-track { background: transparent; }

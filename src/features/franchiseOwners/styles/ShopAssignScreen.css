@@ -1,0 +1,182 @@
+.shop-assign.root {
+  --gap: var(--space-4, 1rem);
+  --radius: var(--radius-2xl, 1rem);
+  --shadow: var(--shadow-md, 0 6px 20px rgba(0,0,0,.08));
+
+  color: var(--text, #111);
+  background: var(--bg, #fff);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  padding: var(--space-6, 1.5rem);
+}
+
+.shop-assign .header .title {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-strong, var(--text, #111));
+}
+.shop-assign .header .subtitle {
+  margin: .25rem 0 0;
+  font-size: .9rem;
+  color: var(--muted, #6b7280);
+}
+
+.shop-assign .filters {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3, .75rem);
+}
+.shop-assign .filters .field {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+.shop-assign .filters .label {
+  font-size: .85rem;
+  color: var(--muted, #6b7280);
+}
+
+@media (min-width: 800px) {
+  .shop-assign .filters {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.shop-assign .board {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+  align-items: start;
+}
+@media (min-width: 1000px) {
+  .shop-assign .board {
+    grid-template-columns: 1fr auto 1fr; /* sol | ayırıcı | sağ */
+  }
+}
+
+.shop-assign .panel {
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  min-height: 360px;
+}
+
+.shop-assign .panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .75rem 1rem;
+  border-bottom: 1px solid var(--border, #e5e7eb);
+}
+.shop-assign .panel-title {
+  font-weight: 600;
+}
+.shop-assign .badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.75rem;
+  height: 1.25rem;
+  font-size: .75rem;
+  padding: 0 .4rem;
+  border-radius: 999px;
+  color: var(--text, #111);
+  background: var(--muted-bg, #f3f4f6);
+}
+.shop-assign .badge-primary {
+  color: white;
+  background: var(--role-primary, #01A89E);
+}
+
+.shop-assign .list {
+  list-style: none;
+  margin: 0;
+  padding: .5rem;
+  overflow: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.shop-assign .item {
+  border: 1px solid var(--border, #e5e7eb);
+  background: var(--bg, #fff);
+  border-radius: calc(var(--radius) - 6px);
+  padding: .5rem .75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  transition: transform .06s ease, box-shadow .12s ease, border-color .12s ease;
+  cursor: pointer;
+}
+.shop-assign .item:hover {
+  border-color: var(--ring, rgba(1,168,158,.35));
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--role-primary, #01A89E) 20%, transparent);
+}
+.shop-assign .item.selected {
+  background: color-mix(in oklab, var(--role-primary, #01A89E) 12%, #fff);
+  border-color: var(--role-primary, #01A89E);
+}
+.shop-assign .item .item-name {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shop-assign .empty {
+  color: var(--muted, #6b7280);
+  text-align: center;
+  padding: 1rem;
+  border: 1px dashed var(--border, #e5e7eb);
+  border-radius: calc(var(--radius) - 6px);
+  background: var(--muted-bg, #f9fafb);
+}
+
+.shop-assign .panel-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: .5rem;
+  padding: .5rem .75rem .75rem;
+}
+
+.shop-assign .divider {
+  display: none;
+  align-self: stretch;
+  min-width: 3rem;
+  max-width: 3rem;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, transparent, var(--muted-bg, #f3f4f6), transparent);
+  color: var(--muted, #6b7280);
+  font-size: 1.25rem;
+  place-items: center;
+}
+@media (min-width: 1000px) {
+  .shop-assign .divider {
+    display: grid;
+  }
+}
+
+.shop-assign .footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: .5rem;
+  padding-top: .25rem;
+  border-top: 1px solid var(--border, #e5e7eb);
+}
+
+.shop-assign .btn-cancel {
+  --_btn-border: var(--border, #e5e7eb);
+  border: 1px solid var(--_btn-border);
+  background: var(--surface, #fff);
+  color: var(--text, #111);
+}
+.shop-assign .btn-cancel:hover {
+  border-color: var(--role-primary, #01A89E);
+}
